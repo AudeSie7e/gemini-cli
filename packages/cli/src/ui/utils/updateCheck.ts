@@ -4,16 +4,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import updateNotifier, { type UpdateInfo as Update } from 'update-notifier';
+import updateNotifier, { UpdateInfo } from 'update-notifier';
 import semver from 'semver';
 import { getPackageJson } from '../../utils/package.js';
 
-export interface UpdateInfo {
+export interface UpdateObject {
   message: string;
-  update: Update;
+  update: UpdateInfo;
 }
 
-export async function checkForUpdates(): Promise<UpdateInfo | null> {
+export async function checkForUpdates(): Promise<UpdateObject | null> {
   try {
     // Skip update check when running from source (development mode)
     if (process.env.DEV === 'true') {
